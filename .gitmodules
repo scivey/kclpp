@@ -1,0 +1,6 @@
+[submodule "external/googletest"]
+	path = external/googletest
+	url = git@github.com:google/googletest
+[submodule "external/aws-sdk-cpp"]
+	path = external/aws-sdk-cpp
+	url = git@github.com:aws/aws-sdk-cpp
