@@ -1,0 +1,22 @@
+{
+  "name": "kclpp-support",
+  "version": "0.0.1",
+  "description": "support for kclpp development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-http-proxy": "^0.10.1",
+    "express-winston": "^2.1.0",
+    "kinesalite": "^1.11.5",
+    "lodash": "^4.17.2",
+    "morgan": "^1.7.0",
+    "request": "^2.79.0",
+    "winston": "^2.3.0"
+  }
+}

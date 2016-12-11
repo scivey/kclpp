@@ -18,9 +18,10 @@ run: create-runner
 	./build/runner
 
 create-tests: base
-	cd build && make test_runner -j8
+	cd build && make unit_test_runner func_test_runner -j8
 
 test: create-tests
-	./build/test_runner
+	./build/unit_test_runner
+	./build/func_test_runner
 
 .PHONY: run create-runner test create-tests

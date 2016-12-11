@@ -18,4 +18,8 @@ dist
 *.egg-info
 .cache
 .envrc-extra
+.bin
+.vagrant
+.pki
+node_modules
 

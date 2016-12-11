@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(kclpp)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++11 -Wall -O0 -g")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++14 -Wall -O0 -g")
 
 set(EXTERNAL ${CMAKE_CURRENT_SOURCE_DIR}/external)
 set(GTEST ${EXTERNAL}/googletest)
@@ -53,6 +53,9 @@ set(SRC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/src)
 FILE(GLOB KCLPP_LIB_SRC
     ${SRC_ROOT}/kclpp/*.cpp
     ${SRC_ROOT}/kclpp/**/*.cpp
+    ${SRC_ROOT}/kclpp/**/**/*.cpp
+    ${SRC_ROOT}/kclpp/**/**/**/*.cpp
+
 )
 
 add_library(kclpp
@@ -68,18 +71,46 @@ add_dependencies(runner kclpp)
 target_link_libraries(runner kclpp ${COMMON_LIBS})
 
 
-FILE(GLOB KCLPP_TEST_SRC
-    ${SRC_ROOT}/test/*.cpp
-    ${SRC_ROOT}/test/**/*.cpp
+
+FILE(GLOB KCLPP_TEST_SUPPORT_SRC
+    ${SRC_ROOT}/kclpp_test_support/*.cpp
+    ${SRC_ROOT}/kclpp_test_support/**/*.cpp
 )
-add_executable(test_runner
-    ${KCLPP_TEST_SRC}
+add_library(kclpp_test_support ${KCLPP_TEST_SUPPORT_SRC})
+add_dependencies(kclpp_test_support kclpp)
+target_link_libraries(kclpp_test_support kclpp)
+
+
+FILE(GLOB KCLPP_UNIT_TEST_SRC
+    ${SRC_ROOT}/test/unit/*.cpp
+    ${SRC_ROOT}/test/unit/**/*.cpp
+)
+add_executable(unit_test_runner
+    ${KCLPP_UNIT_TEST_SRC}
     ${SRC_ROOT}/run_tests.cpp
 )
-add_dependencies(test_runner kclpp)
-
-target_link_libraries(test_runner
+add_dependencies(unit_test_runner kclpp kclpp_test_support)
+target_link_libraries(unit_test_runner
     kclpp
+    kclpp_test_support
     gmock
     ${COMMON_LIBS}
 )
+
+
+FILE(GLOB KCLPP_FUNCTIONAL_TEST_SRC
+    ${SRC_ROOT}/test/functional/*.cpp
+    ${SRC_ROOT}/test/functional/**/*.cpp
+)
+add_executable(func_test_runner
+    ${KCLPP_FUNCTIONAL_TEST_SRC}
+    ${SRC_ROOT}/run_api_tests.cpp
+)
+add_dependencies(func_test_runner kclpp kclpp_test_support)
+target_link_libraries(func_test_runner
+    kclpp
+    kclpp_test_support
+    gmock
+    ${COMMON_LIBS}
+)
+

@@ -4,3 +4,6 @@
 [submodule "external/aws-sdk-cpp"]
 	path = external/aws-sdk-cpp
 	url = git@github.com:aws/aws-sdk-cpp
+[submodule "external/amazon-kinesis-client"]
+	path = external/amazon-kinesis-client
+	url = https://github.com/awslabs/amazon-kinesis-client
