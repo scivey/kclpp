@@ -63,7 +63,7 @@ The [ShardIterator class](include/kclpp/kinesis/ShardIterator.h) is a thin layer
 This can be used for consuming records from a given position through the end of the shard, even without the lease or distributed coordination features. 
 
 #### Checkpointed consumption from a single Kinesis shard
-At the top level, Amazon's KCL handles stream consumption with two primary classes: `ShardConsumer` and `Worker`.  `ShardConsumer` consumes records from a single stream, feeds them to a user-implemented `RecordProcessor` class, and provides a `RecordProcessorCheckpointer` object which the `RecordProcessor` can call to save its progress.  Aside from a little bit of polished, `ShardConsumer` is already implemented [here](/src/kclpp/clientlib/worker/ShardConsumer.cpp).
+At the top level, Amazon's KCL handles stream consumption with two primary classes: `ShardConsumer` and `Worker`.  `ShardConsumer` consumes records from a single stream, feeds them to a user-implemented `RecordProcessor` class, and provides a `RecordProcessorCheckpointer` object which the `RecordProcessor` can call to save its progress.  Aside from a little bit of polishe, `ShardConsumer` is already implemented [here](/src/kclpp/clientlib/worker/ShardConsumer.cpp).
 
 #### Lots of tests
 See the [/src/test directory](src/test), e.g. [here](src/test/functional/test_KCLKinesisClient_functional.cpp).
